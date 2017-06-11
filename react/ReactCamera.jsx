@@ -57,13 +57,13 @@ export class Camera extends React.Component {
     axios.post('/api/upload', { img: capturedImg })
       .then(({ data: emotion }) => {
         this.setState({...this.state, emotion })
+          //Move back to capture mode
+        setTimeout(() => {
+          this.setState({...this.state, displayCapturedImage: false, emotion: '' })
+        }, 4000)
       })
 
     this.setState({...this.state, capturedImg, displayCapturedImage: true })
-
-    setTimeout(() => {
-      this.setState({...this.state, displayCapturedImage: false, emotion: '' })
-    }, 4000)
   }
 
   mapEmotion(emotion) {
